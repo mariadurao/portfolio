@@ -33,7 +33,7 @@ function detectMedia() {
 /* MOBILE NAVIGATION */
 
 if (detectMedia() === true) {
-  previewSlider();
+ // previewSlider();
   $("#sectionInfo").toggle();
 
   $(".pLink").click(function () {
