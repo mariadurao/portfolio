@@ -253,7 +253,8 @@ figcaption {
 }
 
 .descPerformance {
-  display: none;
+  display: block;
+  font-size: 14px;
 }
 
 /*mobile info + contact*/
@@ -459,7 +460,7 @@ footer nav h2:not(:first-of-type) {
 
   .descPerformance {
     display: block;
-
+    font-size: 16px;
   }
 
   #sectionIndex nav ul li:hover > p,
