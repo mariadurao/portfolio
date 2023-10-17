@@ -553,7 +553,7 @@ footer nav h2:not(:first-of-type) {
 
   footer nav {
     padding: 30px;
-    background-color: none;
+    background-color: unset;
   }
 
   footer nav h2:first-of-type {
