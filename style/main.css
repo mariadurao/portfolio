@@ -255,6 +255,8 @@ figcaption {
 .descPerformance {
   display: block;
   font-size: 14px;
+  color: var(--Grey);
+  font-style: italic;
 }
 
 /*mobile info + contact*/
