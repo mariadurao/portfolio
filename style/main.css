@@ -149,7 +149,7 @@ header nav h2 {
 
 #sectionIndex,
 #sectionInfo {
-  padding-top: 8em;
+  padding-top: 5em;
   padding-bottom: 8em;
 }
 
@@ -205,14 +205,14 @@ header nav h2 {
 #sectionDisplay article:not(.preview) {
   position: relative;
   height: 100vh;
-  padding-top: 8em;
+  padding-top: 5em;
   padding-bottom: 6em;
 }
 
 .preview{
   position: relative;
   height: 100vh;
-  padding-top: 8em;
+  padding-top: 5em;
   padding-bottom: 6em;
 }
 
