@@ -225,7 +225,7 @@ header nav h2 {
 }
 
 #sectionDisplay article header {
-  padding-bottom: 1em;
+  padding-bottom: 0;
 }
 
 #sectionDisplay article header h4 {
