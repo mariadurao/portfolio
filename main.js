@@ -46,14 +46,14 @@ setInterval(function () {
 
 
 if (detectMedia() === true) {
-  previewSlider();
+
   $("#sectionInfo").toggle();
+  previewSlider();
 
 
   $(".pLink").click(function () {
-    
+
     if ($(this).hasClass("top") && iShowing == false) {
-      scrollCurrent = $(window).scrollTop();
       $("#sectionIndex").toggle();
       $("#sectionDisplay").toggle();
       $("#sectionInfo").hide();
@@ -74,17 +74,17 @@ if (detectMedia() === true) {
   });
 
   $("#iLink").click(function () {
+
     $("#sectionInfo").toggle();
-    $("#sectionDisplay").toggle();
 
     infShowing = !infShowing;
-    
-      scrollCurrent = $(window).scrollTop();
-    
+
+    scrollCurrent = $(window).scrollTop();
+
     if (infShowing) {
-      window.scrollTo(0, 0);
+      window.scrollTo({ top: 0, left: 0, behavior: "instant" })
     } else {
-      window.scrollTo(scrollCurrent, 0);
+      window.scrollTo({ top: scrollCurrent, left: 0, behavior: "instant" })
     }
   });
 
@@ -109,9 +109,9 @@ if (detectMedia() === true) {
 
 } else {
   $("#sectionInfo").toggle();
-  
+
   previewSlider();
-  
+
   /*DESKTOP : PROJECT TOGGLE DESKTOP*/
 
   $(".pLink").click(function () {
@@ -136,6 +136,7 @@ if (detectMedia() === true) {
 
     $(".pLink").not(this).removeClass("active");
     $(".pLink").not(this).parent().siblings().removeClass("active");
+
     // set pShowing boolean to use later
 
     if ($('.imageContainer[data-img="' + tid + '"]').is(":visible")) {
@@ -145,6 +146,7 @@ if (detectMedia() === true) {
     }
 
     //give current tag to images to show corresponding project images
+
     $(".imageContainer").not($currentI).children().removeClass("current");
     $('.imageContainer[data-img="' + tid + '"]')
       .children()
@@ -174,7 +176,7 @@ if (detectMedia() === true) {
 
     $("#currentDescription").html($currentD1 /*+ $currentD2*/);
     previewSlider();
-    
+
   });
 
   /*IMAGE SLIDING*/
@@ -253,7 +255,7 @@ function previewSlider() {
 
   if (!pShowing && !iShowing && !infShowing) {
     $("#previewContainer").show();
-    
+
   } else {
     $("#previewContainer").hide();
   }
@@ -262,3 +264,115 @@ function previewSlider() {
 
 $("#previewContainer > fig:gt(0)").hide();
 
+
+/*________________________________ */
+
+// appear arrowdown when scroll
+
+let sections = gsap.utils.toArray(".tobottom");
+let arrow = document.getElementsByClassName("st6");
+
+sections.forEach((section) => {
+  ScrollTrigger.create({
+    trigger: section,
+    start: "top top",
+    end: "bottom bottom",
+    onToggle: self => {
+      if (self.isActive) {
+        gsap.to((arrow), { opacity: 1 });
+      } else {
+        gsap.to((arrow), { opacity: 0 });
+      }
+    }
+  });
+});
+
+let next, prev;
+
+
+// find current section and get the next one
+
+function getNextElement() {
+
+  let linksections = gsap.utils.toArray(".proj");
+
+  let viewportHeight = window.innerHeight;
+  let max = 0;
+  let current = null;
+
+  linksections.forEach((linksection, i) => {
+
+    let rect = linksection.getBoundingClientRect();
+    let h = rect.bottom - rect.top;
+    let visible = {
+      top: rect.top >= 0 && rect.top < viewportHeight,
+      bottom: rect.bottom > 0 && rect.bottom < viewportHeight
+    }
+
+    let vpx = 0;
+    if (visible.top && visible.bottom) {
+      vpx = h;
+    } else if (visible.top) {
+      vpx = viewportHeight - rect.top
+    } else if (visible.bottom) {
+      vpx = rect.bottom
+    } else if (h > viewportHeight && rect.top < 0) {
+      var absTop = Math.abs(rect.top)
+      if (absTop < h) {
+        vpx = h - absTop
+      }
+    }
+    if (vpx > max) {
+      max = vpx;
+      current = linksection;
+
+      if (i == 18) {
+        next = `#${current.id}`;
+        console.log("last");
+        prev = `#${linksections[i - 1].id}`;
+      } else if (i < 17 && i != 0) {
+        console.log("middle");
+        next = `#${linksections[i + 1].id}`;
+        prev = `#${linksections[i - 1].id}`;
+      } else if (i < 17 && i == 0) {
+        console.log("first");
+        next = `#${linksections[i + 1].id}`;
+        prev = "#top";
+      }
+    }
+  });
+
+}
+
+let ts;
+let direction;
+
+$(".proj").bind('touchstart', function (e) {
+  ts = e.originalEvent.touches[0].clientY;
+  getNextElement();
+});
+
+$(".proj").bind('touchend', function (e) {
+  var te = e.originalEvent.changedTouches[0].clientY;
+  if (ts > te + 5) {
+    direction = "down";
+
+    $("html").animate(
+      {
+        scrollTop: $(next).offset().top
+      },
+      10
+    )
+
+  } else if (ts < te - 5) {
+    direction = "up";
+
+    $("html").animate(
+      {
+        scrollTop: $(prev).offset().top
+      },
+      10
+    )
+
+  }
+});
