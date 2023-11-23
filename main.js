@@ -76,6 +76,7 @@ if (detectMedia() === true) {
   $("#iLink").click(function () {
 
     $("#sectionInfo").toggle();
+    $("#sectionDisplay").toggle();
 
     infShowing = !infShowing;
 
