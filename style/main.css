@@ -205,7 +205,7 @@ header nav h2 {
 #sectionDisplay article:not(.preview) {
   position: relative;
   height: 100vh;
-  padding-top: 12vh;
+  padding-top: 14vh;
   padding-bottom: 6em;
 }
 
