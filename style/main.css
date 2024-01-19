@@ -125,7 +125,7 @@ header nav {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding: 40px 20px 20px 20px;
+  padding: 20px;
   z-index: 100;
 }
 
@@ -204,9 +204,16 @@ header nav h2 {
 
 #sectionDisplay article:not(.preview) {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   height: 100vh;
-  padding-top: 14vh;
+  padding-top: 6vh;
   padding-bottom: 6em;
+}
+
+#sectionDisplay article:not(.preview) header{
+  width: 100%;
 }
 
 .preview{
@@ -512,6 +519,7 @@ footer nav h2:not(:first-of-type) {
 
   #sectionDisplay article:not(.preview) {
     position: relative;
+    display: block;
     padding-top: 0;
     padding-bottom: 0;
     height: max-content;
