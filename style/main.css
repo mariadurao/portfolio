@@ -209,7 +209,7 @@ header nav h2 {
   justify-content: center;
   height: 100vh;
   padding-top: 6vh;
-  padding-bottom: 6em;
+  padding-bottom: 18vh;
 }
 
 #sectionDisplay article:not(.preview) header{
@@ -232,7 +232,7 @@ header nav h2 {
 }
 
 #sectionDisplay article header {
-  padding-bottom: 1.5em;
+  padding-bottom: 0em;
 }
 
 #sectionDisplay article header h4 {
