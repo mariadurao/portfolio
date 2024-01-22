@@ -480,6 +480,7 @@ footer nav h2:not(:first-of-type) {
     display: none;
     position: static;
     margin-top: 5em;
+    pointer-events: none;
   }
 
   #sectionIndex nav ul li:hover > p,
@@ -622,6 +623,10 @@ footer nav h2:not(:first-of-type) {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
+  }
+
+  #sectionInfo p, h3{
+     pointer-events: none;
   }
 
   #sectionInfo section ul li p {
